@@ -1,0 +1,13 @@
+# Dependency directories
+node_modules
+
+# Jest
+coverage
+
+# TypeScript
+dist
+
+.idea
+.iml
+.vscode
+*generated.yaml
