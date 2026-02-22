@@ -60,5 +60,26 @@ export {
     Result as SouthAfricaCorporateTaxResult,
 } from './corporate/south-africa/domain/types';
 
+// Australia
+export { AustraliaIncomeTaxServiceImpl as AustraliaIncomeTaxService } from './income-tax/australia/AustraliaIncomeTaxServiceImpl';
+export {
+    ComputedIncomeTaxValues as AustraliaComputedIncomeTaxValues,
+    IncomeTaxRules as AustraliaIncomeTaxRules,
+} from './income-tax/australia/domain/types';
+
+export { AustraliaMortgageServiceImpl as AustraliaMortgageService } from './mortgage/australia/AustraliaMortgageServiceImpl';
+export {
+    MortgageRules as AustraliaMortgageRules,
+    MortgageInput as AustraliaMortgageInput,
+    MortgageOutput as AustraliaMortgageOutput,
+} from './mortgage/australia/domain/types';
+
+export { AustraliaCorporateTaxServiceImpl as AustraliaCorporateTaxService } from './corporate/australia/AustraliaCorporateTaxServiceImpl';
+export {
+    Input as AustraliaCorporateTaxInput,
+    Rules as AustraliaCorporateTaxRules,
+    Result as AustraliaCorporateTaxResult,
+} from './corporate/australia/domain/types';
+
 export { IncomeTaxCalculatorSchema } from './income-tax/domain/types';
 export * from './income-tax/domain/types';
