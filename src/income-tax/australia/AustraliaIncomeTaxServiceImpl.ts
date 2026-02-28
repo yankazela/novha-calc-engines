@@ -10,10 +10,14 @@ import {
 export class AustraliaIncomeTaxServiceImpl implements AustraliaIncomeTaxService {
     private _income: number;
     private _rules: IncomeTaxRules;
+    private _isResident: boolean;
+    private _includeMedicareLevy: boolean;
 
-    constructor(income: number, rules: IncomeTaxRules) {
+    constructor(income: number, rules: IncomeTaxRules, isResident: boolean, includeMedicareLevy: boolean) {
         this._income = income;
         this._rules = rules;
+        this._isResident = isResident;
+        this._includeMedicareLevy = includeMedicareLevy;
     }
 
     public calculateNetIncome(): ComputedIncomeTaxValues {
@@ -28,10 +32,9 @@ export class AustraliaIncomeTaxServiceImpl implements AustraliaIncomeTaxService 
         );
 
         const incomeTax = Math.max(0, grossTax - lito);
-        const medicareLevy = this.computeMedicareLevy(
-            this._income,
-            this._rules.medicareLevy,
-        );
+        const medicareLevy = this._includeMedicareLevy
+            ? this.computeMedicareLevy(this._income, this._rules.medicareLevy)
+            : 0;
 
         const totalDeductions = incomeTax + medicareLevy;
         const netIncome = this._income - totalDeductions;
@@ -55,8 +58,9 @@ export class AustraliaIncomeTaxServiceImpl implements AustraliaIncomeTaxService 
         let tax = 0;
         const bracketBreakdown: BracketAllocation[] = [];
 
-        for (let index = 0; index < rules.taxBrackets.length; index++) {
-            const bracket = rules.taxBrackets[index];
+        const applicableBrackets = this._isResident ? rules.taxBrackets : rules.nonResidentTaxBrackets;
+        for (let index = 0; index < applicableBrackets.length; index++) {
+            const bracket = applicableBrackets[index];
 
             if (income <= bracket.from) {
                 bracketBreakdown.push({

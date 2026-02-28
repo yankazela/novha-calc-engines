@@ -2,6 +2,7 @@ import { BracketAllocation, TaxBracket } from "../../domain/types";
 
 export interface IncomeTaxRules {
     taxBrackets: TaxBracket[];
+    nonResidentTaxBrackets: TaxBracket[];
     medicareLevy: MedicareLevyRules;
     lowIncomeTaxOffset: LowIncomeTaxOffset;
     lowAndMiddleIncomeTaxOffset?: LowAndMiddleIncomeTaxOffset;

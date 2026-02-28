@@ -4,5 +4,7 @@ export interface AustraliaIncomeTaxService {
     calculateNetIncome(
         income: number,
         rules: IncomeTaxRules,
+        isResident: boolean,
+        includeMedicareLevy: boolean,
     ): ComputedIncomeTaxValues;
 }

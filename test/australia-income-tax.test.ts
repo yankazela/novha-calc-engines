@@ -10,6 +10,11 @@ const australiaRules: IncomeTaxRules = {
         { from: 120000, to: 180000, rate: 0.37 },
         { from: 180000, to: null, rate: 0.45 },
     ],
+    nonResidentTaxBrackets: [
+        { from: 0, to: 120000, rate: 0.325 },
+        { from: 120000, to: 180000, rate: 0.37 },
+        { from: 180000, to: null, rate: 0.45 },
+    ],
     medicareLevy: {
         rate: 0.02,
         shadingInThreshold: 26000,
