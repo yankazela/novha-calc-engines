@@ -81,5 +81,26 @@ export {
     Result as AustraliaCorporateTaxResult,
 } from './corporate/australia/domain/types';
 
+// United Kingdom
+export { UKIncomeTaxServiceImpl as UKIncomeTaxService } from './income-tax/uk/UKIncomeTaxServiceImpl';
+export {
+    ComputedIncomeTaxValues as UKComputedIncomeTaxValues,
+    IncomeTaxRules as UKIncomeTaxRules,
+} from './income-tax/uk/domain/types';
+
+export { UKCorporateTaxServiceImpl as UKCorporateTaxService } from './corporate/uk/UKCorporateTaxServiceImpl';
+export {
+    Input as UKCorporateTaxInput,
+    Rules as UKCorporateTaxRules,
+    Result as UKCorporateTaxResult,
+} from './corporate/uk/domain/types';
+
+export { UKMortgageServiceImpl as UKMortgageService } from './mortgage/uk/UKMortgageServiceImpl';
+export {
+    MortgageRules as UKMortgageRules,
+    MortgageInput as UKMortgageInput,
+    MortgageOutput as UKMortgageOutput,
+} from './mortgage/uk/domain/types';
+
 export { IncomeTaxCalculatorSchema } from './income-tax/domain/types';
 export * from './income-tax/domain/types';
