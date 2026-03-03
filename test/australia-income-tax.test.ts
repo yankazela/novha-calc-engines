@@ -31,7 +31,7 @@ const australiaRules: IncomeTaxRules = {
 
 describe('AustraliaIncomeTaxServiceImpl', () => {
     it('returns zero tax for income below the tax-free threshold', () => {
-        const service = new AustraliaIncomeTaxServiceImpl(18200, australiaRules);
+        const service = new AustraliaIncomeTaxServiceImpl(18200, australiaRules, true, false);
         const result = service.calculateNetIncome();
 
         expect(result.incomeTax).toBe(0);
@@ -40,7 +40,7 @@ describe('AustraliaIncomeTaxServiceImpl', () => {
     });
 
     it('correctly calculates income tax for $60,000 income', () => {
-        const service = new AustraliaIncomeTaxServiceImpl(60000, australiaRules);
+        const service = new AustraliaIncomeTaxServiceImpl(60000, australiaRules, true, false);
         const result = service.calculateNetIncome();
 
         // Bracket 1: 0 → 18200 @ 0% = 0
@@ -54,7 +54,7 @@ describe('AustraliaIncomeTaxServiceImpl', () => {
     });
 
     it('applies the Low Income Tax Offset for low incomes', () => {
-        const service = new AustraliaIncomeTaxServiceImpl(30000, australiaRules);
+        const service = new AustraliaIncomeTaxServiceImpl(30000, australiaRules, true, false);
         const result = service.calculateNetIncome();
 
         // Bracket 2: 18200 → 30000 @ 19% = 2242
@@ -65,7 +65,7 @@ describe('AustraliaIncomeTaxServiceImpl', () => {
     });
 
     it('partially phases out LITO between $37,500 and $45,000', () => {
-        const service = new AustraliaIncomeTaxServiceImpl(40000, australiaRules);
+        const service = new AustraliaIncomeTaxServiceImpl(40000, australiaRules, true, false);
         const result = service.calculateNetIncome();
 
         // Gross tax: 18200→40000 @ 19% = 3382
@@ -74,7 +74,7 @@ describe('AustraliaIncomeTaxServiceImpl', () => {
     });
 
     it('applies Medicare Levy correctly', () => {
-        const service = new AustraliaIncomeTaxServiceImpl(60000, australiaRules);
+        const service = new AustraliaIncomeTaxServiceImpl(60000, australiaRules, true, true);
         const result = service.calculateNetIncome();
 
         // Medicare Levy: 60000 * 2% = 1200
@@ -83,7 +83,7 @@ describe('AustraliaIncomeTaxServiceImpl', () => {
 
     it('applies shading-in Medicare Levy for income in the shading-in range', () => {
         const income = 28000;
-        const service = new AustraliaIncomeTaxServiceImpl(income, australiaRules);
+        const service = new AustraliaIncomeTaxServiceImpl(income, australiaRules, true, true);
         const result = service.calculateNetIncome();
 
         // income (28000) > shadingInThreshold (26000), < fullLevyThreshold (32500)
@@ -92,14 +92,14 @@ describe('AustraliaIncomeTaxServiceImpl', () => {
     });
 
     it('returns zero Medicare Levy below shading-in threshold', () => {
-        const service = new AustraliaIncomeTaxServiceImpl(25000, australiaRules);
+        const service = new AustraliaIncomeTaxServiceImpl(25000, australiaRules, true, true);
         const result = service.calculateNetIncome();
 
         expect(result.medicareLevy).toBe(0);
     });
 
     it('calculates high income tax correctly', () => {
-        const service = new AustraliaIncomeTaxServiceImpl(200000, australiaRules);
+        const service = new AustraliaIncomeTaxServiceImpl(200000, australiaRules, true, true);
         const result = service.calculateNetIncome();
 
         // Bracket 1: 0→18200 @ 0% = 0
@@ -115,7 +115,7 @@ describe('AustraliaIncomeTaxServiceImpl', () => {
     });
 
     it('net income equals gross income minus total deductions', () => {
-        const service = new AustraliaIncomeTaxServiceImpl(80000, australiaRules);
+        const service = new AustraliaIncomeTaxServiceImpl(80000, australiaRules, true, true);
         const result = service.calculateNetIncome();
 
         expect(result.netIncome).toBeCloseTo(
@@ -125,7 +125,7 @@ describe('AustraliaIncomeTaxServiceImpl', () => {
     });
 
     it('effective tax rate is income tax divided by gross income', () => {
-        const service = new AustraliaIncomeTaxServiceImpl(100000, australiaRules);
+        const service = new AustraliaIncomeTaxServiceImpl(100000, australiaRules, true, false);
         const result = service.calculateNetIncome();
 
         expect(result.effectiveTaxRate).toBeCloseTo(result.incomeTax / result.grossIncome, 4);
