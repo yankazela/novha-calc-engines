@@ -102,5 +102,47 @@ export {
     MortgageOutput as UKMortgageOutput,
 } from './mortgage/uk/domain/types';
 
+// USA
+export { USAIncomeTaxServiceImpl as USAIncomeTaxService } from './income-tax/usa/USAIncomeTaxServiceImpl';
+export {
+    ComputedIncomeTaxValues as USAComputedIncomeTaxValues,
+    IncomeTaxRules as USAIncomeTaxRules,
+} from './income-tax/usa/domain/types';
+
+export { USAMortgageServiceImpl as USAMortgageService } from './mortgage/usa/USAMortgageServiceImpl';
+export {
+    MortgageRules as USAMortgageRules,
+    MortgageInput as USAMortgageInput,
+    MortgageOutput as USAMortgageOutput,
+} from './mortgage/usa/domain/types';
+
+export { USACorporateTaxServiceImpl as USACorporateTaxService } from './corporate/usa/USACorporateTaxServiceImpl';
+export {
+    Input as USACorporateTaxInput,
+    Rules as USACorporateTaxRules,
+    Result as USACorporateTaxResult,
+} from './corporate/usa/domain/types';
+
+// Germany
+export { GermanyIncomeTaxServiceImpl as GermanyIncomeTaxService } from './income-tax/germany/GermanyIncomeTaxServiceImpl';
+export {
+    ComputedIncomeTaxValues as GermanyComputedIncomeTaxValues,
+    IncomeTaxRules as GermanyIncomeTaxRules,
+} from './income-tax/germany/domain/types';
+
+export { GermanyMortgageServiceImpl as GermanyMortgageService } from './mortgage/germany/GermanyMortgageServiceImpl';
+export {
+    MortgageRules as GermanyMortgageRules,
+    MortgageInput as GermanyMortgageInput,
+    MortgageOutput as GermanyMortgageOutput,
+} from './mortgage/germany/domain/types';
+
+export { GermanyCorporateTaxServiceImpl as GermanyCorporateTaxService } from './corporate/germany/GermanyCorporateTaxServiceImpl';
+export {
+    Input as GermanyCorporateTaxInput,
+    Rules as GermanyCorporateTaxRules,
+    Result as GermanyCorporateTaxResult,
+} from './corporate/germany/domain/types';
+
 export { IncomeTaxCalculatorSchema } from './income-tax/domain/types';
 export * from './income-tax/domain/types';
