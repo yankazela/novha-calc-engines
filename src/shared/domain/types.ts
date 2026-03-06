@@ -3,6 +3,7 @@ export enum CalculatorType {
     MORTGAGE = 'MORTGAGE',
     LOAN = 'LOAN',
     CORPORATE_TAX = 'CORPORATE_TAX',
+    CAPITAL_GAINS = 'CAPITAL_GAINS',
 }
 
 export interface RuleMeta {
