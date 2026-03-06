@@ -144,5 +144,61 @@ export {
     Result as GermanyCorporateTaxResult,
 } from './corporate/germany/domain/types';
 
+// Capital Gains - Canada
+export { CanadaCapitalGainsServiceImpl as CanadaCapitalGainsService } from './capital-gains/canada/CanadaCapitalGainsServiceImpl';
+export {
+    Input as CanadaCapitalGainsInput,
+    Rules as CanadaCapitalGainsRules,
+    Result as CanadaCapitalGainsResult,
+} from './capital-gains/canada/domain/types';
+
+// Capital Gains - France
+export { FranceCapitalGainsServiceImpl as FranceCapitalGainsService } from './capital-gains/france/FranceCapitalGainsServiceImpl';
+export {
+    Input as FranceCapitalGainsInput,
+    Rules as FranceCapitalGainsRules,
+    Result as FranceCapitalGainsResult,
+} from './capital-gains/france/domain/types';
+
+// Capital Gains - South Africa
+export { SouthAfricaCapitalGainsServiceImpl as SouthAfricaCapitalGainsService } from './capital-gains/south-africa/SouthAfricaCapitalGainsServiceImpl';
+export {
+    Input as SouthAfricaCapitalGainsInput,
+    Rules as SouthAfricaCapitalGainsRules,
+    Result as SouthAfricaCapitalGainsResult,
+} from './capital-gains/south-africa/domain/types';
+
+// Capital Gains - Australia
+export { AustraliaCapitalGainsServiceImpl as AustraliaCapitalGainsService } from './capital-gains/australia/AustraliaCapitalGainsServiceImpl';
+export {
+    Input as AustraliaCapitalGainsInput,
+    Rules as AustraliaCapitalGainsRules,
+    Result as AustraliaCapitalGainsResult,
+} from './capital-gains/australia/domain/types';
+
+// Capital Gains - UK
+export { UKCapitalGainsServiceImpl as UKCapitalGainsService } from './capital-gains/uk/UKCapitalGainsServiceImpl';
+export {
+    Input as UKCapitalGainsInput,
+    Rules as UKCapitalGainsRules,
+    Result as UKCapitalGainsResult,
+} from './capital-gains/uk/domain/types';
+
+// Capital Gains - USA
+export { USACapitalGainsServiceImpl as USACapitalGainsService } from './capital-gains/usa/USACapitalGainsServiceImpl';
+export {
+    Input as USACapitalGainsInput,
+    Rules as USACapitalGainsRules,
+    Result as USACapitalGainsResult,
+} from './capital-gains/usa/domain/types';
+
+// Capital Gains - Germany
+export { GermanyCapitalGainsServiceImpl as GermanyCapitalGainsService } from './capital-gains/germany/GermanyCapitalGainsServiceImpl';
+export {
+    Input as GermanyCapitalGainsInput,
+    Rules as GermanyCapitalGainsRules,
+    Result as GermanyCapitalGainsResult,
+} from './capital-gains/germany/domain/types';
+
 export { IncomeTaxCalculatorSchema } from './income-tax/domain/types';
 export * from './income-tax/domain/types';
