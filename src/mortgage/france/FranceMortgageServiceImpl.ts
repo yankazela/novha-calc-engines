@@ -1,4 +1,4 @@
-import { FranceMortgageService } from '../..';
+import { FranceMortgageService } from './FranceMortgageService';
 import { MortgageRules, MortgageInput, MortgageOutput, AmortizationScheduleItem } from './domain/types';
 
 export class FranceMortgageServiceImpl implements FranceMortgageService {
