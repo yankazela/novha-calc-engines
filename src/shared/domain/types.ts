@@ -4,6 +4,7 @@ export enum CalculatorType {
     LOAN = 'LOAN',
     CORPORATE_TAX = 'CORPORATE_TAX',
     CAPITAL_GAINS = 'CAPITAL_GAINS',
+    INHERITANCE_TAX = 'INHERITANCE_TAX',
 }
 
 export interface RuleMeta {
