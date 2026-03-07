@@ -46,6 +46,7 @@ import {
     Input as GermanyCapitalGainsInput,
     Rules as GermanyCapitalGainsRules
 } from './germany/domain/types';
+import { Result } from './domain/types';
 
 export {
     CanadaCapitalGainsService,
@@ -68,5 +69,6 @@ export {
     USACapitalGainsRules,
     GermanyCapitalGainsService,
     GermanyCapitalGainsInput,
-    GermanyCapitalGainsRules
+    GermanyCapitalGainsRules,
+    Result
 };
