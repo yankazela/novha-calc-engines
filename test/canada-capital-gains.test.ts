@@ -29,7 +29,7 @@ describe('CanadaCapitalGainsServiceImpl', () => {
 
         // Taxable gain = 20000, all in first bracket (15%)
         expect(result.taxableGain).toBe(20000);
-        expect(result.capitalGainsTax).toBe(20000 * 0.15);
+        expect(result.capitalGainTax).toBe(20000 * 0.15);
     });
 
     it('returns zero for zero gain', () => {
@@ -37,7 +37,7 @@ describe('CanadaCapitalGainsServiceImpl', () => {
         const service = new CanadaCapitalGainsServiceImpl(input, canadaCapitalGainsRules);
         const result = service.calculate();
 
-        expect(result.capitalGainsTax).toBe(0);
+        expect(result.capitalGainTax).toBe(0);
         expect(result.taxableGain).toBe(0);
         expect(result.breakdowns).toHaveLength(0);
     });
@@ -47,7 +47,7 @@ describe('CanadaCapitalGainsServiceImpl', () => {
         const service = new CanadaCapitalGainsServiceImpl(input, canadaCapitalGainsRules);
         const result = service.calculate();
 
-        expect(result.capitalGainsTax).toBe(0);
+        expect(result.capitalGainTax).toBe(0);
     });
 
     it('calculates effective rate based on full gain', () => {
@@ -55,7 +55,7 @@ describe('CanadaCapitalGainsServiceImpl', () => {
         const service = new CanadaCapitalGainsServiceImpl(input, canadaCapitalGainsRules);
         const result = service.calculate();
 
-        expect(result.effectiveRate).toBe((result.capitalGainsTax / 100000) * 100);
+        expect(result.effectiveRate).toBe((result.capitalGainTax / 100000) * 100);
     });
 
     it('stacks gain on top of other income', () => {
@@ -66,6 +66,6 @@ describe('CanadaCapitalGainsServiceImpl', () => {
         // Other income = 50000, taxable gain = 10000
         // 10000 falls in first bracket (50000-55867 = 5867 at 15%, rest at 20.5%)
         expect(result.taxableGain).toBe(10000);
-        expect(result.capitalGainsTax).toBeGreaterThan(0);
+        expect(result.capitalGainTax).toBeGreaterThan(0);
     });
 });

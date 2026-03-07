@@ -1,6 +1,6 @@
-import { Breakdown } from "../domain/types";
+import { Breakdown, Result } from "../domain/types";
 import { UKCapitalGainsService } from "./UKCapitalGainsService";
-import { Input, Result, Rules } from "./domain/types";
+import { Input, Rules } from "./domain/types";
 
 export class UKCapitalGainsServiceImpl implements UKCapitalGainsService {
     private _input: Input;
@@ -15,7 +15,15 @@ export class UKCapitalGainsServiceImpl implements UKCapitalGainsService {
         const gain = this._input.capitalGain;
 
         if (gain <= 0) {
-            return { taxableGain: 0, capitalGainsTax: 0, effectiveRate: 0, breakdowns: [] };
+            return {
+                taxableGain: 0,
+                capitalGainTax: 0,
+                socialContributions: 0,
+                netInvestmentIncomeTax: 0,
+                totalTax: 0,
+                effectiveRate: 0,
+                breakdowns: []
+            };
         }
 
         const taxableGain = Math.max(0, gain - this._rules.annualExemption);
@@ -23,7 +31,10 @@ export class UKCapitalGainsServiceImpl implements UKCapitalGainsService {
         if (taxableGain <= 0) {
             return {
                 taxableGain: 0,
-                capitalGainsTax: 0,
+                capitalGainTax: 0,
+                socialContributions: 0,
+                netInvestmentIncomeTax: 0,
+                totalTax: 0,
                 effectiveRate: 0,
                 breakdowns: [{
                     from: '0',
@@ -76,7 +87,10 @@ export class UKCapitalGainsServiceImpl implements UKCapitalGainsService {
 
         return {
             taxableGain,
-            capitalGainsTax: tax,
+            capitalGainTax: tax,
+            socialContributions: 0,
+            netInvestmentIncomeTax: 0,
+            totalTax: tax,
             effectiveRate: gain > 0 ? (tax / gain) * 100 : 0,
             breakdowns,
         };

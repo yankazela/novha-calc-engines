@@ -23,7 +23,7 @@ describe('SouthAfricaCapitalGainsServiceImpl', () => {
         const result = service.calculate();
 
         expect(result.taxableGain).toBe(0);
-        expect(result.capitalGainsTax).toBe(0);
+        expect(result.capitalGainTax).toBe(0);
     });
 
     it('applies 40% inclusion rate after exclusion', () => {
@@ -42,7 +42,7 @@ describe('SouthAfricaCapitalGainsServiceImpl', () => {
         const result = service.calculate();
 
         // Taxable gain = 40000, first bracket rate 18%
-        expect(result.capitalGainsTax).toBe(40000 * 0.18);
+        expect(result.capitalGainTax).toBe(40000 * 0.18);
     });
 
     it('returns zero for zero gain', () => {
@@ -50,7 +50,7 @@ describe('SouthAfricaCapitalGainsServiceImpl', () => {
         const service = new SouthAfricaCapitalGainsServiceImpl(input, southAfricaCapitalGainsRules);
         const result = service.calculate();
 
-        expect(result.capitalGainsTax).toBe(0);
+        expect(result.capitalGainTax).toBe(0);
         expect(result.breakdowns).toHaveLength(0);
     });
 
@@ -59,7 +59,7 @@ describe('SouthAfricaCapitalGainsServiceImpl', () => {
         const service = new SouthAfricaCapitalGainsServiceImpl(input, southAfricaCapitalGainsRules);
         const result = service.calculate();
 
-        expect(result.capitalGainsTax).toBe(0);
+        expect(result.capitalGainTax).toBe(0);
     });
 
     it('calculates effective rate based on full gain', () => {
@@ -67,7 +67,7 @@ describe('SouthAfricaCapitalGainsServiceImpl', () => {
         const service = new SouthAfricaCapitalGainsServiceImpl(input, southAfricaCapitalGainsRules);
         const result = service.calculate();
 
-        expect(result.effectiveRate).toBe((result.capitalGainsTax / 140000) * 100);
+        expect(result.effectiveRate).toBe((result.capitalGainTax / 140000) * 100);
     });
 
     it('stacks included gain on other income', () => {
@@ -79,6 +79,6 @@ describe('SouthAfricaCapitalGainsServiceImpl', () => {
         // Taxable gain = 500000 * 0.40 = 200000
         // Other income = 300000
         expect(result.taxableGain).toBe(200000);
-        expect(result.capitalGainsTax).toBeGreaterThan(0);
+        expect(result.capitalGainTax).toBeGreaterThan(0);
     });
 });

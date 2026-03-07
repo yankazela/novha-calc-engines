@@ -1,6 +1,6 @@
-import { Breakdown } from "../domain/types";
+import { Breakdown, Result } from "../domain/types";
 import { GermanyCapitalGainsService } from "./GermanyCapitalGainsService";
-import { Input, Result, Rules } from "./domain/types";
+import { Input, Rules } from "./domain/types";
 
 export class GermanyCapitalGainsServiceImpl implements GermanyCapitalGainsService {
     private _input: Input;
@@ -17,8 +17,9 @@ export class GermanyCapitalGainsServiceImpl implements GermanyCapitalGainsServic
         if (gain <= 0) {
             return {
                 taxableGain: 0,
-                capitalGainsTax: 0,
-                solidaritySurcharge: 0,
+                capitalGainTax: 0,
+                socialContributions: 0,
+                netInvestmentIncomeTax: 0,
                 totalTax: 0,
                 effectiveRate: 0,
                 breakdowns: [],
@@ -30,8 +31,9 @@ export class GermanyCapitalGainsServiceImpl implements GermanyCapitalGainsServic
         if (taxableGain <= 0) {
             return {
                 taxableGain: 0,
-                capitalGainsTax: 0,
-                solidaritySurcharge: 0,
+                capitalGainTax: 0,
+                socialContributions: 0,
+                netInvestmentIncomeTax: 0,
                 totalTax: 0,
                 effectiveRate: 0,
                 breakdowns: [{
@@ -43,29 +45,30 @@ export class GermanyCapitalGainsServiceImpl implements GermanyCapitalGainsServic
             };
         }
 
-        const capitalGainsTax = taxableGain * this._rules.flatTaxRate;
-        const solidaritySurcharge = capitalGainsTax * this._rules.solidaritySurchargeRate;
-        const totalTax = capitalGainsTax + solidaritySurcharge;
+        const capitalGainTax = taxableGain * this._rules.flatTaxRate;
+        const socialContributions = capitalGainTax * this._rules.solidaritySurchargeRate;
+        const totalTax = capitalGainTax + socialContributions;
 
         const breakdowns: Breakdown[] = [
             {
                 from: '0',
                 to: 'All',
                 rate: this._rules.flatTaxRate,
-                amount: capitalGainsTax,
+                amount: capitalGainTax,
             },
             {
                 from: 'CGT',
                 to: 'Solidarity',
                 rate: this._rules.solidaritySurchargeRate,
-                amount: solidaritySurcharge,
+                amount: socialContributions,
             },
         ];
 
         return {
             taxableGain,
-            capitalGainsTax,
-            solidaritySurcharge,
+            capitalGainTax,
+            socialContributions,
+            netInvestmentIncomeTax: 0,
             totalTax,
             effectiveRate: gain > 0 ? (totalTax / gain) * 100 : 0,
             breakdowns,

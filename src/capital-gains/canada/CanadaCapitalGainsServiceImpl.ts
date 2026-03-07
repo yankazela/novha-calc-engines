@@ -1,6 +1,6 @@
-import { Breakdown } from "../domain/types";
+import { Breakdown, Result } from "../domain/types";
 import { CanadaCapitalGainsService } from "./CanadaCapitalGainsService";
-import { Input, Result, Rules, TaxBracket } from "./domain/types";
+import { Input, Rules, TaxBracket } from "./domain/types";
 
 export class CanadaCapitalGainsServiceImpl implements CanadaCapitalGainsService {
     private _input: Input;
@@ -15,7 +15,15 @@ export class CanadaCapitalGainsServiceImpl implements CanadaCapitalGainsService 
         const gain = this._input.capitalGain;
 
         if (gain <= 0) {
-            return { taxableGain: 0, capitalGainsTax: 0, effectiveRate: 0, breakdowns: [] };
+            return {
+                taxableGain: 0,
+                capitalGainTax: 0,
+                socialContributions: 0,
+                netInvestmentIncomeTax: 0,
+                totalTax: 0,
+                effectiveRate: 0,
+                breakdowns: []
+            };
         }
 
         const taxableGain = gain * this._rules.inclusionRate;
@@ -24,7 +32,10 @@ export class CanadaCapitalGainsServiceImpl implements CanadaCapitalGainsService 
 
         return {
             taxableGain,
-            capitalGainsTax: tax,
+            capitalGainTax: tax,
+            socialContributions: 0,
+            netInvestmentIncomeTax: 0,
+            totalTax: tax,
             effectiveRate: gain > 0 ? (tax / gain) * 100 : 0,
             breakdowns,
         };

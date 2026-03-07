@@ -1,6 +1,6 @@
-import { Breakdown } from "../domain/types";
+import { Breakdown, Result } from "../domain/types";
 import { FranceCapitalGainsService } from "./FranceCapitalGainsService";
-import { Input, Result, Rules } from "./domain/types";
+import { Input, Rules } from "./domain/types";
 
 export class FranceCapitalGainsServiceImpl implements FranceCapitalGainsService {
     private _input: Input;
@@ -15,19 +15,27 @@ export class FranceCapitalGainsServiceImpl implements FranceCapitalGainsService 
         const gain = this._input.capitalGain;
 
         if (gain <= 0) {
-            return { incomeTax: 0, socialContributions: 0, totalTax: 0, effectiveRate: 0, breakdowns: [] };
+            return {
+                taxableGain: gain,
+                capitalGainTax: 0,
+                socialContributions: 0,
+                netInvestmentIncomeTax: 0,
+                totalTax: 0,
+                effectiveRate: 0,
+                breakdowns: []
+            };
         }
 
-        const incomeTax = gain * this._rules.flatTaxRate;
+        const capitalGainTax = gain * this._rules.flatTaxRate;
         const socialContributions = gain * this._rules.socialContributionsRate;
-        const totalTax = incomeTax + socialContributions;
+        const totalTax = capitalGainTax + socialContributions;
 
         const breakdowns: Breakdown[] = [
             {
                 from: '0',
                 to: 'All',
                 rate: this._rules.flatTaxRate,
-                amount: incomeTax,
+                amount: capitalGainTax,
             },
             {
                 from: '0',
@@ -38,8 +46,10 @@ export class FranceCapitalGainsServiceImpl implements FranceCapitalGainsService 
         ];
 
         return {
-            incomeTax,
+            taxableGain: gain,
+            capitalGainTax,
             socialContributions,
+            netInvestmentIncomeTax: 0,
             totalTax,
             effectiveRate: (totalTax / gain) * 100,
             breakdowns,

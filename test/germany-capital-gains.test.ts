@@ -28,8 +28,8 @@ describe('GermanyCapitalGainsServiceImpl', () => {
         // Solidarity = 2500 * 5.5% = 137.5
         // Total = 2637.5
         expect(result.taxableGain).toBe(10000);
-        expect(result.capitalGainsTax).toBe(2500);
-        expect(result.solidaritySurcharge).toBe(137.5);
+        expect(result.capitalGainTax).toBe(2500);
+        expect(result.socialContributions).toBe(137.5);
         expect(result.totalTax).toBe(2637.5);
     });
 
@@ -78,8 +78,8 @@ describe('GermanyCapitalGainsServiceImpl', () => {
         const cgt = taxable * 0.25;
         const soli = cgt * 0.055;
         expect(result.taxableGain).toBe(taxable);
-        expect(result.capitalGainsTax).toBe(cgt);
-        expect(result.solidaritySurcharge).toBeCloseTo(soli, 2);
+        expect(result.capitalGainTax).toBe(cgt);
+        expect(result.socialContributions).toBeCloseTo(soli, 2);
         expect(result.totalTax).toBeCloseTo(cgt + soli, 2);
     });
 });

@@ -39,7 +39,7 @@ describe('AustraliaCapitalGainsServiceImpl', () => {
         // Taxable gain = 20000, no other income
         // 18200 at 0% = 0, 1800 at 16% = 288
         expect(result.taxableGain).toBe(20000);
-        expect(result.capitalGainsTax).toBeCloseTo(288, 2);
+        expect(result.capitalGainTax).toBeCloseTo(288, 2);
     });
 
     it('returns zero for zero gain', () => {
@@ -47,7 +47,7 @@ describe('AustraliaCapitalGainsServiceImpl', () => {
         const service = new AustraliaCapitalGainsServiceImpl(input, australiaCapitalGainsRules);
         const result = service.calculate();
 
-        expect(result.capitalGainsTax).toBe(0);
+        expect(result.capitalGainTax).toBe(0);
         expect(result.breakdowns).toHaveLength(0);
     });
 
@@ -56,7 +56,7 @@ describe('AustraliaCapitalGainsServiceImpl', () => {
         const service = new AustraliaCapitalGainsServiceImpl(input, australiaCapitalGainsRules);
         const result = service.calculate();
 
-        expect(result.capitalGainsTax).toBe(0);
+        expect(result.capitalGainTax).toBe(0);
     });
 
     it('stacks gain on top of other income', () => {
@@ -67,7 +67,7 @@ describe('AustraliaCapitalGainsServiceImpl', () => {
         // Other income = 50000, taxable gain = 10000 (50% discount)
         // Gain falls in 50000-60000 range, all at 30%
         expect(result.taxableGain).toBe(10000);
-        expect(result.capitalGainsTax).toBe(10000 * 0.30);
+        expect(result.capitalGainTax).toBe(10000 * 0.30);
     });
 
     it('calculates effective rate based on full gain', () => {
@@ -75,6 +75,6 @@ describe('AustraliaCapitalGainsServiceImpl', () => {
         const service = new AustraliaCapitalGainsServiceImpl(input, australiaCapitalGainsRules);
         const result = service.calculate();
 
-        expect(result.effectiveRate).toBe((result.capitalGainsTax / 20000) * 100);
+        expect(result.effectiveRate).toBe((result.capitalGainTax / 20000) * 100);
     });
 });

@@ -1,6 +1,6 @@
-import { Breakdown } from "../domain/types";
+import { Breakdown, Result } from "../domain/types";
 import { AustraliaCapitalGainsService } from "./AustraliaCapitalGainsService";
-import { Input, Result, Rules, TaxBracket } from "./domain/types";
+import { Input, Rules, TaxBracket } from "./domain/types";
 
 export class AustraliaCapitalGainsServiceImpl implements AustraliaCapitalGainsService {
     private _input: Input;
@@ -15,7 +15,15 @@ export class AustraliaCapitalGainsServiceImpl implements AustraliaCapitalGainsSe
         const gain = this._input.capitalGain;
 
         if (gain <= 0) {
-            return { taxableGain: 0, capitalGainsTax: 0, effectiveRate: 0, breakdowns: [] };
+            return { 
+                taxableGain: 0,
+                capitalGainTax: 0,
+                socialContributions: 0, 
+                totalTax: 0,
+                effectiveRate: 0,
+                netInvestmentIncomeTax: 0,
+                breakdowns: []
+            };
         }
 
         const eligible = this._input.holdingPeriodMonths >= this._rules.cgtDiscountMinMonths;
@@ -26,7 +34,10 @@ export class AustraliaCapitalGainsServiceImpl implements AustraliaCapitalGainsSe
 
         return {
             taxableGain,
-            capitalGainsTax: tax,
+            capitalGainTax: tax,
+            socialContributions: 0,
+            netInvestmentIncomeTax: 0,
+            totalTax: tax,
             effectiveRate: gain > 0 ? (tax / gain) * 100 : 0,
             breakdowns,
         };

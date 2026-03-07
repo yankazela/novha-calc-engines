@@ -1,6 +1,6 @@
-import { Breakdown } from "../domain/types";
+import { Breakdown, Result } from "../domain/types";
 import { SouthAfricaCapitalGainsService } from "./SouthAfricaCapitalGainsService";
-import { Input, Result, Rules, TaxBracket } from "./domain/types";
+import { Input, Rules, TaxBracket } from "./domain/types";
 
 export class SouthAfricaCapitalGainsServiceImpl implements SouthAfricaCapitalGainsService {
     private _input: Input;
@@ -15,7 +15,15 @@ export class SouthAfricaCapitalGainsServiceImpl implements SouthAfricaCapitalGai
         const gain = this._input.capitalGain;
 
         if (gain <= 0) {
-            return { taxableGain: 0, capitalGainsTax: 0, effectiveRate: 0, breakdowns: [] };
+            return {
+                taxableGain: 0,
+                capitalGainTax: 0,
+                socialContributions: 0,
+                netInvestmentIncomeTax: 0,
+                totalTax: 0,
+                effectiveRate: 0,
+                breakdowns: []
+            };
         }
 
         const netGain = Math.max(0, gain - this._rules.annualExclusion);
@@ -24,7 +32,10 @@ export class SouthAfricaCapitalGainsServiceImpl implements SouthAfricaCapitalGai
         if (taxableGain <= 0) {
             return {
                 taxableGain: 0,
-                capitalGainsTax: 0,
+                capitalGainTax: 0,
+                socialContributions: 0,
+                netInvestmentIncomeTax: 0,
+                totalTax: 0,
                 effectiveRate: 0,
                 breakdowns: [{
                     from: '0',
@@ -40,7 +51,10 @@ export class SouthAfricaCapitalGainsServiceImpl implements SouthAfricaCapitalGai
 
         return {
             taxableGain,
-            capitalGainsTax: tax,
+            capitalGainTax: tax,
+            socialContributions: 0,
+            netInvestmentIncomeTax: 0,
+            totalTax: tax,
             effectiveRate: gain > 0 ? (tax / gain) * 100 : 0,
             breakdowns,
         };

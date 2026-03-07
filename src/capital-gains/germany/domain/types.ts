@@ -1,4 +1,3 @@
-import { Breakdown } from "../../domain/types";
 
 export interface Rules {
     flatTaxRate: number;
@@ -8,13 +7,4 @@ export interface Rules {
 
 export interface Input {
     capitalGain: number;
-}
-
-export interface Result {
-    taxableGain: number;
-    capitalGainsTax: number;
-    solidaritySurcharge: number;
-    totalTax: number;
-    effectiveRate: number;
-    breakdowns: Breakdown[];
 }

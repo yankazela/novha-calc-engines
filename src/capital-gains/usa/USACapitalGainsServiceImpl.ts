@@ -1,6 +1,6 @@
-import { Breakdown } from "../domain/types";
+import { Breakdown, Result } from "../domain/types";
 import { USACapitalGainsService } from "./USACapitalGainsService";
-import { Input, LongTermBracket, Result, Rules } from "./domain/types";
+import { Input, LongTermBracket, Rules } from "./domain/types";
 
 export class USACapitalGainsServiceImpl implements USACapitalGainsService {
     private _input: Input;
@@ -15,7 +15,15 @@ export class USACapitalGainsServiceImpl implements USACapitalGainsService {
         const gain = this._input.capitalGain;
 
         if (gain <= 0) {
-            return { capitalGainsTax: 0, netInvestmentIncomeTax: 0, totalTax: 0, effectiveRate: 0, breakdowns: [] };
+            return { 
+                taxableGain: 0,
+                capitalGainTax: 0,
+                socialContributions: 0,
+                netInvestmentIncomeTax: 0,
+                totalTax: 0,
+                effectiveRate: 0,
+                breakdowns: []
+            };
         }
 
         const isLongTerm = this._input.holdingPeriodMonths > 12;
@@ -37,7 +45,9 @@ export class USACapitalGainsServiceImpl implements USACapitalGainsService {
         const totalTax = tax + niit;
 
         return {
-            capitalGainsTax: tax,
+            taxableGain: gain,
+            capitalGainTax: tax,
+            socialContributions: 0,
             netInvestmentIncomeTax: niit,
             totalTax,
             effectiveRate: gain > 0 ? (totalTax / gain) * 100 : 0,

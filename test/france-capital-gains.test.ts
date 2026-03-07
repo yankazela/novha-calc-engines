@@ -13,7 +13,7 @@ describe('FranceCapitalGainsServiceImpl', () => {
         const service = new FranceCapitalGainsServiceImpl(input, franceCapitalGainsRules);
         const result = service.calculate();
 
-        expect(result.incomeTax).toBe(12800);
+        expect(result.capitalGainTax).toBe(12800);
         expect(result.socialContributions).toBe(17200);
         expect(result.totalTax).toBe(30000);
     });

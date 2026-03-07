@@ -1,5 +1,3 @@
-import { Breakdown } from "../../domain/types";
-
 export interface Rules {
     inclusionRate: number;
     taxBrackets: TaxBracket[];
@@ -14,11 +12,4 @@ export interface TaxBracket {
 export interface Input {
     capitalGain: number;
     totalTaxableIncome: number;
-}
-
-export interface Result {
-    taxableGain: number;
-    capitalGainsTax: number;
-    effectiveRate: number;
-    breakdowns: Breakdown[];
 }

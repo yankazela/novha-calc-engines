@@ -26,7 +26,7 @@ describe('USACapitalGainsServiceImpl', () => {
         const service = new USACapitalGainsServiceImpl(input, usaCapitalGainsRules);
         const result = service.calculate();
 
-        expect(result.capitalGainsTax).toBe(0);
+        expect(result.capitalGainTax).toBe(0);
         expect(result.netInvestmentIncomeTax).toBe(0);
         expect(result.totalTax).toBe(0);
     });
@@ -37,7 +37,7 @@ describe('USACapitalGainsServiceImpl', () => {
         const result = service.calculate();
 
         // Other income = 50000, gain falls in 50000-100000 range, all at 15%
-        expect(result.capitalGainsTax).toBe(50000 * 0.15);
+        expect(result.capitalGainTax).toBe(50000 * 0.15);
         expect(result.netInvestmentIncomeTax).toBe(0);
     });
 
@@ -47,7 +47,7 @@ describe('USACapitalGainsServiceImpl', () => {
         const result = service.calculate();
 
         expect(result.netInvestmentIncomeTax).toBe(100000 * 0.038);
-        expect(result.totalTax).toBe(result.capitalGainsTax + result.netInvestmentIncomeTax);
+        expect(result.totalTax).toBe(result.capitalGainTax + result.netInvestmentIncomeTax);
     });
 
     it('applies short-term rates for gains held <= 12 months', () => {
@@ -56,7 +56,7 @@ describe('USACapitalGainsServiceImpl', () => {
         const result = service.calculate();
 
         // Short-term gain taxed as ordinary income from 0-50000
-        expect(result.capitalGainsTax).toBeGreaterThan(0);
+        expect(result.capitalGainTax).toBeGreaterThan(0);
         expect(result.breakdowns.length).toBeGreaterThan(0);
     });
 
