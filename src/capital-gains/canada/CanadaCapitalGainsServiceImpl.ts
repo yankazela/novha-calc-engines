@@ -1,4 +1,4 @@
-import { Breakdown, Result } from "../domain/types";
+import { Result } from "../domain/types";
 import { CanadaCapitalGainsService } from "./CanadaCapitalGainsService";
 import { Input, Rules, TaxBracket } from "./domain/types";
 
@@ -27,56 +27,43 @@ export class CanadaCapitalGainsServiceImpl implements CanadaCapitalGainsService 
         }
 
         const taxableGain = gain * this._rules.inclusionRate;
-        const otherIncome = this._input.totalTaxableIncome - gain;
-        const { tax, breakdowns } = this.applyBrackets(taxableGain, otherIncome, this._rules.taxBrackets);
+
+        // income BEFORE the capital gain
+        const baseIncome = this._input.totalTaxableIncome;
+
+        const incomeWithGain = baseIncome + taxableGain;
+
+        const baseTax = this.calculateProgressiveTax(baseIncome, this._rules.taxBrackets);
+        const taxWithGain = this.calculateProgressiveTax(incomeWithGain, this._rules.taxBrackets);
+
+        const capitalGainTax = taxWithGain - baseTax;
 
         return {
             taxableGain,
-            capitalGainTax: tax,
+            capitalGainTax,
             socialContributions: 0,
             netInvestmentIncomeTax: 0,
-            totalTax: tax,
-            effectiveRate: gain > 0 ? (tax / gain) * 100 : 0,
-            breakdowns,
+            totalTax: capitalGainTax,
+            effectiveRate: gain > 0 ? (capitalGainTax / gain) * 100 : 0,
+            breakdowns: []
         };
     }
 
-    private applyBrackets(
-        taxableGain: number,
-        otherIncome: number,
-        brackets: TaxBracket[],
-    ): { tax: number; breakdowns: Breakdown[] } {
+    private calculateProgressiveTax(income: number, brackets: TaxBracket[]): number {
         let tax = 0;
-        const breakdowns: Breakdown[] = [];
-        let remaining = taxableGain;
-        let incomeUsed = otherIncome;
 
         for (const bracket of brackets) {
-            if (remaining <= 0) break;
-
             const upper = bracket.to ?? Infinity;
 
-            if (incomeUsed >= upper) continue;
+            if (income <= bracket.from) break;
 
-            const bracketStart = Math.max(bracket.from, incomeUsed);
-            const bracketSpace = upper - bracketStart;
-            const taxable = Math.min(bracketSpace, remaining);
+            const taxable = Math.min(income, upper) - bracket.from;
 
             if (taxable > 0) {
-                const bracketTax = taxable * bracket.rate;
-                tax += bracketTax;
-                remaining -= taxable;
-                incomeUsed += taxable;
-
-                breakdowns.push({
-                    from: `${bracket.from}`,
-                    to: `${bracket.to ?? 'Above'}`,
-                    rate: bracket.rate,
-                    amount: bracketTax,
-                });
+                tax += taxable * bracket.rate;
             }
         }
 
-        return { tax, breakdowns };
+        return tax;
     }
 }
