@@ -54,6 +54,22 @@ import {
     Result as GermanyInheritanceTaxResult,
 } from './germany/domain/types';
 
+// Spain
+import { SpainInheritanceTaxServiceImpl as SpainInheritanceTaxService } from './spain/SpainInheritanceTaxServiceImpl';
+import {
+    Input as SpainInheritanceTaxInput,
+    Rules as SpainInheritanceTaxRules,
+    Result as SpainInheritanceTaxResult,
+} from './spain/domain/types';
+
+// Japan
+import { JapanInheritanceTaxServiceImpl as JapanInheritanceTaxService } from './japan/JapanInheritanceTaxServiceImpl';
+import {
+    Input as JapanInheritanceTaxInput,
+    Rules as JapanInheritanceTaxRules,
+    Result as JapanInheritanceTaxResult,
+} from './japan/domain/types';
+
 export {
     CanadaInheritanceTaxService,
     CanadaInheritanceTaxInput,
@@ -83,4 +99,12 @@ export {
     GermanyInheritanceTaxInput,
     GermanyInheritanceTaxRules,
     GermanyInheritanceTaxResult,
+    SpainInheritanceTaxService,
+    SpainInheritanceTaxInput,
+    SpainInheritanceTaxRules,
+    SpainInheritanceTaxResult,
+    JapanInheritanceTaxService,
+    JapanInheritanceTaxInput,
+    JapanInheritanceTaxRules,
+    JapanInheritanceTaxResult,
 };
