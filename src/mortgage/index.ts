@@ -55,6 +55,38 @@ import {
     MortgageOutput as GermanyMortgageOutput,
 } from './germany/domain/types';
 
+// Brazil
+import { BrazilMortgageServiceImpl as BrazilMortgageService } from './brazil/BrazilMortgageServiceImpl';
+import {
+    MortgageRules as BrazilMortgageRules,
+    MortgageInput as BrazilMortgageInput,
+    MortgageOutput as BrazilMortgageOutput,
+} from './brazil/domain/types';
+
+// Spain
+import { SpainMortgageServiceImpl as SpainMortgageService } from './spain/SpainMortgageServiceImpl';
+import {
+    MortgageRules as SpainMortgageRules,
+    MortgageInput as SpainMortgageInput,
+    MortgageOutput as SpainMortgageOutput,
+} from './spain/domain/types';
+
+// India
+import { IndiaMortgageServiceImpl as IndiaMortgageService } from './india/IndiaMortgageServiceImpl';
+import {
+    MortgageRules as IndiaMortgageRules,
+    MortgageInput as IndiaMortgageInput,
+    MortgageOutput as IndiaMortgageOutput,
+} from './india/domain/types';
+
+// Japan
+import { JapanMortgageServiceImpl as JapanMortgageService } from './japan/JapanMortgageServiceImpl';
+import {
+    MortgageRules as JapanMortgageRules,
+    MortgageInput as JapanMortgageInput,
+    MortgageOutput as JapanMortgageOutput,
+} from './japan/domain/types';
+
 export {
     CanadaMortgageService,
     CanadaMortgageRules,
@@ -83,5 +115,21 @@ export {
     GermanyMortgageService,
     GermanyMortgageRules,
     GermanyMortgageInput,
-    GermanyMortgageOutput
+    GermanyMortgageOutput,
+    BrazilMortgageService,
+    BrazilMortgageRules,
+    BrazilMortgageInput,
+    BrazilMortgageOutput,
+    SpainMortgageService,
+    SpainMortgageRules,
+    SpainMortgageInput,
+    SpainMortgageOutput,
+    IndiaMortgageService,
+    IndiaMortgageRules,
+    IndiaMortgageInput,
+    IndiaMortgageOutput,
+    JapanMortgageService,
+    JapanMortgageRules,
+    JapanMortgageInput,
+    JapanMortgageOutput
 };

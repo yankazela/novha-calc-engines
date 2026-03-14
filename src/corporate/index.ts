@@ -47,6 +47,34 @@ import {
     Result as CanadaCorporateTaxResult,
 } from './canada/domain/types';
 
+import { BrazilCorporateTaxServiceImpl as BrazilCorporateTaxService } from './brazil/BrazilCorporateTaxServiceImpl';
+import {
+    Input as BrazilCorporateTaxInput,
+    Rules as BrazilCorporateTaxRules,
+    Result as BrazilCorporateTaxResult,
+} from './brazil/domain/types';
+
+import { SpainCorporateTaxServiceImpl as SpainCorporateTaxService } from './spain/SpainCorporateTaxServiceImpl';
+import {
+    Input as SpainCorporateTaxInput,
+    Rules as SpainCorporateTaxRules,
+    Result as SpainCorporateTaxResult,
+} from './spain/domain/types';
+
+import { IndiaCorporateTaxServiceImpl as IndiaCorporateTaxService } from './india/IndiaCorporateTaxServiceImpl';
+import {
+    Input as IndiaCorporateTaxInput,
+    Rules as IndiaCorporateTaxRules,
+    Result as IndiaCorporateTaxResult,
+} from './india/domain/types';
+
+import { JapanCorporateTaxServiceImpl as JapanCorporateTaxService } from './japan/JapanCorporateTaxServiceImpl';
+import {
+    Input as JapanCorporateTaxInput,
+    Rules as JapanCorporateTaxRules,
+    Result as JapanCorporateTaxResult,
+} from './japan/domain/types';
+
 export {
     USACorporateTaxService,
     USACorporateTaxInput,
@@ -75,5 +103,21 @@ export {
     CanadaCorporateTaxService,
     CanadaCorporateTaxInput,
     CanadaCorporateTaxRules,
-    CanadaCorporateTaxResult
+    CanadaCorporateTaxResult,
+    BrazilCorporateTaxService,
+    BrazilCorporateTaxInput,
+    BrazilCorporateTaxRules,
+    BrazilCorporateTaxResult,
+    SpainCorporateTaxService,
+    SpainCorporateTaxInput,
+    SpainCorporateTaxRules,
+    SpainCorporateTaxResult,
+    IndiaCorporateTaxService,
+    IndiaCorporateTaxInput,
+    IndiaCorporateTaxRules,
+    IndiaCorporateTaxResult,
+    JapanCorporateTaxService,
+    JapanCorporateTaxInput,
+    JapanCorporateTaxRules,
+    JapanCorporateTaxResult
 };

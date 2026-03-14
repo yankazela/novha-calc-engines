@@ -48,6 +48,34 @@ import {
 } from './germany/domain/types';
 import { Result } from './domain/types';
 
+// Capital Gains - Brazil
+import { BrazilCapitalGainsServiceImpl as BrazilCapitalGainsService } from './brazil/BrazilCapitalGainsServiceImpl';
+import {
+    Input as BrazilCapitalGainsInput,
+    Rules as BrazilCapitalGainsRules
+} from './brazil/domain/types';
+
+// Capital Gains - Spain
+import { SpainCapitalGainsServiceImpl as SpainCapitalGainsService } from './spain/SpainCapitalGainsServiceImpl';
+import {
+    Input as SpainCapitalGainsInput,
+    Rules as SpainCapitalGainsRules
+} from './spain/domain/types';
+
+// Capital Gains - India
+import { IndiaCapitalGainsServiceImpl as IndiaCapitalGainsService } from './india/IndiaCapitalGainsServiceImpl';
+import {
+    Input as IndiaCapitalGainsInput,
+    Rules as IndiaCapitalGainsRules
+} from './india/domain/types';
+
+// Capital Gains - Japan
+import { JapanCapitalGainsServiceImpl as JapanCapitalGainsService } from './japan/JapanCapitalGainsServiceImpl';
+import {
+    Input as JapanCapitalGainsInput,
+    Rules as JapanCapitalGainsRules
+} from './japan/domain/types';
+
 export {
     CanadaCapitalGainsService,
     CanadaCapitalGainsInput,
@@ -70,5 +98,17 @@ export {
     GermanyCapitalGainsService,
     GermanyCapitalGainsInput,
     GermanyCapitalGainsRules,
+    BrazilCapitalGainsService,
+    BrazilCapitalGainsInput,
+    BrazilCapitalGainsRules,
+    SpainCapitalGainsService,
+    SpainCapitalGainsInput,
+    SpainCapitalGainsRules,
+    IndiaCapitalGainsService,
+    IndiaCapitalGainsInput,
+    IndiaCapitalGainsRules,
+    JapanCapitalGainsService,
+    JapanCapitalGainsInput,
+    JapanCapitalGainsRules,
     Result
 };

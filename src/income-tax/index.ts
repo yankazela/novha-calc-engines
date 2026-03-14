@@ -47,6 +47,34 @@ import {
     IncomeTaxRules as GermanyIncomeTaxRules,
 } from './germany/domain/types';
 
+// Brazil
+import { BrazilIncomeTaxServiceImpl as BrazilIncomeTaxService } from './brazil/BrazilIncomeTaxServiceImpl';
+import {
+    ComputedIncomeTaxValues as BrazilComputedIncomeTaxValues,
+    IncomeTaxRules as BrazilIncomeTaxRules,
+} from './brazil/domain/types';
+
+// Spain
+import { SpainIncomeTaxServiceImpl as SpainIncomeTaxService } from './spain/SpainIncomeTaxServiceImpl';
+import {
+    ComputedIncomeTaxValues as SpainComputedIncomeTaxValues,
+    IncomeTaxRules as SpainIncomeTaxRules,
+} from './spain/domain/types';
+
+// India
+import { IndiaIncomeTaxServiceImpl as IndiaIncomeTaxService } from './india/IndiaIncomeTaxServiceImpl';
+import {
+    ComputedIncomeTaxValues as IndiaComputedIncomeTaxValues,
+    IncomeTaxRules as IndiaIncomeTaxRules,
+} from './india/domain/types';
+
+// Japan
+import { JapanIncomeTaxServiceImpl as JapanIncomeTaxService } from './japan/JapanIncomeTaxServiceImpl';
+import {
+    ComputedIncomeTaxValues as JapanComputedIncomeTaxValues,
+    IncomeTaxRules as JapanIncomeTaxRules,
+} from './japan/domain/types';
+
 export {
     CanadaIncomeTaxService,
     CanadaComputedIncomeTaxValues,
@@ -69,4 +97,16 @@ export {
     GermanyIncomeTaxService,
     GermanyComputedIncomeTaxValues,
     GermanyIncomeTaxRules,
+    BrazilIncomeTaxService,
+    BrazilComputedIncomeTaxValues,
+    BrazilIncomeTaxRules,
+    SpainIncomeTaxService,
+    SpainComputedIncomeTaxValues,
+    SpainIncomeTaxRules,
+    IndiaIncomeTaxService,
+    IndiaComputedIncomeTaxValues,
+    IndiaIncomeTaxRules,
+    JapanIncomeTaxService,
+    JapanComputedIncomeTaxValues,
+    JapanIncomeTaxRules,
 };
