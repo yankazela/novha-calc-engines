@@ -75,6 +75,27 @@ import {
     IncomeTaxRules as JapanIncomeTaxRules,
 } from './japan/domain/types';
 
+// Israel
+import { IsraelIncomeTaxServiceImpl as IsraelIncomeTaxService } from './israel/IsraelIncomeTaxServiceImpl';
+import {
+    ComputedIncomeTaxValues as IsraelComputedIncomeTaxValues,
+    IncomeTaxRules as IsraelIncomeTaxRules,
+} from './israel/domain/types';
+
+// Switzerland
+import { SwitzerlandIncomeTaxServiceImpl as SwitzerlandIncomeTaxService } from './switzerland/SwitzerlandIncomeTaxServiceImpl';
+import {
+    ComputedIncomeTaxValues as SwitzerlandComputedIncomeTaxValues,
+    IncomeTaxRules as SwitzerlandIncomeTaxRules,
+} from './switzerland/domain/types';
+
+// Netherlands
+import { NetherlandsIncomeTaxServiceImpl as NetherlandsIncomeTaxService } from './netherlands/NetherlandsIncomeTaxServiceImpl';
+import {
+    ComputedIncomeTaxValues as NetherlandsComputedIncomeTaxValues,
+    IncomeTaxRules as NetherlandsIncomeTaxRules,
+} from './netherlands/domain/types';
+
 export {
     CanadaIncomeTaxService,
     CanadaComputedIncomeTaxValues,
@@ -109,4 +130,13 @@ export {
     JapanIncomeTaxService,
     JapanComputedIncomeTaxValues,
     JapanIncomeTaxRules,
+    IsraelIncomeTaxService,
+    IsraelComputedIncomeTaxValues,
+    IsraelIncomeTaxRules,
+    SwitzerlandIncomeTaxService,
+    SwitzerlandComputedIncomeTaxValues,
+    SwitzerlandIncomeTaxRules,
+    NetherlandsIncomeTaxService,
+    NetherlandsComputedIncomeTaxValues,
+    NetherlandsIncomeTaxRules,
 };

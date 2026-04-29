@@ -87,6 +87,30 @@ import {
     MortgageOutput as JapanMortgageOutput,
 } from './japan/domain/types';
 
+// Israel
+import { IsraelMortgageServiceImpl as IsraelMortgageService } from './israel/IsraelMortgageServiceImpl';
+import {
+    MortgageRules as IsraelMortgageRules,
+    MortgageInput as IsraelMortgageInput,
+    MortgageOutput as IsraelMortgageOutput,
+} from './israel/domain/types';
+
+// Switzerland
+import { SwitzerlandMortgageServiceImpl as SwitzerlandMortgageService } from './switzerland/SwitzerlandMortgageServiceImpl';
+import {
+    MortgageRules as SwitzerlandMortgageRules,
+    MortgageInput as SwitzerlandMortgageInput,
+    MortgageOutput as SwitzerlandMortgageOutput,
+} from './switzerland/domain/types';
+
+// Netherlands
+import { NetherlandsMortgageServiceImpl as NetherlandsMortgageService } from './netherlands/NetherlandsMortgageServiceImpl';
+import {
+    MortgageRules as NetherlandsMortgageRules,
+    MortgageInput as NetherlandsMortgageInput,
+    MortgageOutput as NetherlandsMortgageOutput,
+} from './netherlands/domain/types';
+
 export {
     CanadaMortgageService,
     CanadaMortgageRules,
@@ -131,5 +155,17 @@ export {
     JapanMortgageService,
     JapanMortgageRules,
     JapanMortgageInput,
-    JapanMortgageOutput
+    JapanMortgageOutput,
+    IsraelMortgageService,
+    IsraelMortgageRules,
+    IsraelMortgageInput,
+    IsraelMortgageOutput,
+    SwitzerlandMortgageService,
+    SwitzerlandMortgageRules,
+    SwitzerlandMortgageInput,
+    SwitzerlandMortgageOutput,
+    NetherlandsMortgageService,
+    NetherlandsMortgageRules,
+    NetherlandsMortgageInput,
+    NetherlandsMortgageOutput,
 };

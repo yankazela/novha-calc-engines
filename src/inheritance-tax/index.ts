@@ -70,6 +70,14 @@ import {
     Result as JapanInheritanceTaxResult,
 } from './japan/domain/types';
 
+// Netherlands
+import { NetherlandsInheritanceTaxServiceImpl as NetherlandsInheritanceTaxService } from './netherlands/NetherlandsInheritanceTaxServiceImpl';
+import {
+    Input as NetherlandsInheritanceTaxInput,
+    Rules as NetherlandsInheritanceTaxRules,
+    Result as NetherlandsInheritanceTaxResult,
+} from './netherlands/domain/types';
+
 export {
     CanadaInheritanceTaxService,
     CanadaInheritanceTaxInput,
@@ -107,4 +115,8 @@ export {
     JapanInheritanceTaxInput,
     JapanInheritanceTaxRules,
     JapanInheritanceTaxResult,
+    NetherlandsInheritanceTaxService,
+    NetherlandsInheritanceTaxInput,
+    NetherlandsInheritanceTaxRules,
+    NetherlandsInheritanceTaxResult,
 };

@@ -75,6 +75,30 @@ import {
     Result as JapanCorporateTaxResult,
 } from './japan/domain/types';
 
+// Israel
+import { IsraelCorporateTaxServiceImpl as IsraelCorporateTaxService } from './israel/IsraelCorporateTaxServiceImpl';
+import {
+    Input as IsraelCorporateTaxInput,
+    Rules as IsraelCorporateTaxRules,
+    Result as IsraelCorporateTaxResult,
+} from './israel/domain/types';
+
+// Switzerland
+import { SwitzerlandCorporateTaxServiceImpl as SwitzerlandCorporateTaxService } from './switzerland/SwitzerlandCorporateTaxServiceImpl';
+import {
+    Input as SwitzerlandCorporateTaxInput,
+    Rules as SwitzerlandCorporateTaxRules,
+    Result as SwitzerlandCorporateTaxResult,
+} from './switzerland/domain/types';
+
+// Netherlands
+import { NetherlandsCorporateTaxServiceImpl as NetherlandsCorporateTaxService } from './netherlands/NetherlandsCorporateTaxServiceImpl';
+import {
+    Input as NetherlandsCorporateTaxInput,
+    Rules as NetherlandsCorporateTaxRules,
+    Result as NetherlandsCorporateTaxResult,
+} from './netherlands/domain/types';
+
 export {
     USACorporateTaxService,
     USACorporateTaxInput,
@@ -119,5 +143,17 @@ export {
     JapanCorporateTaxService,
     JapanCorporateTaxInput,
     JapanCorporateTaxRules,
-    JapanCorporateTaxResult
+    JapanCorporateTaxResult,
+    IsraelCorporateTaxService,
+    IsraelCorporateTaxInput,
+    IsraelCorporateTaxRules,
+    IsraelCorporateTaxResult,
+    SwitzerlandCorporateTaxService,
+    SwitzerlandCorporateTaxInput,
+    SwitzerlandCorporateTaxRules,
+    SwitzerlandCorporateTaxResult,
+    NetherlandsCorporateTaxService,
+    NetherlandsCorporateTaxInput,
+    NetherlandsCorporateTaxRules,
+    NetherlandsCorporateTaxResult,
 };
