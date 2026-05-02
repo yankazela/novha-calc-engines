@@ -76,6 +76,13 @@ import {
     Rules as JapanCapitalGainsRules
 } from './japan/domain/types';
 
+// Capital Gains - Israel
+import { IsraelCapitalGainsServiceImpl as IsraelCapitalGainsService } from './israel/IsraelCapitalGainsServiceImpl';
+import {
+    Input as IsraelCapitalGainsInput,
+    Rules as IsraelCapitalGainsRules,
+} from './israel/domain/types';
+
 export {
     CanadaCapitalGainsService,
     CanadaCapitalGainsInput,
@@ -110,5 +117,8 @@ export {
     JapanCapitalGainsService,
     JapanCapitalGainsInput,
     JapanCapitalGainsRules,
+    IsraelCapitalGainsService,
+    IsraelCapitalGainsInput,
+    IsraelCapitalGainsRules,
     Result
 };
